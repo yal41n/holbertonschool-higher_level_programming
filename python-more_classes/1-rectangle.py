@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-1-rectangle.py: Defines a class Rectangle with private width and height attributes,
-validated by property getters and setters.
+1-rectangle.py: Defines a class Rectangle with private width and height 
+attributes, validated by property getters and setters.
 """
 
 
