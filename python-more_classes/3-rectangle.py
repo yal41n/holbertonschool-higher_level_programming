@@ -57,4 +57,9 @@ class Rectangle:
 
     def __repr__(self):
         """Return official representation."""
-        return f"<{self.__class__.__module__}.{self.__class__.__name__} object at {hex(id(self))}>"
+        return "{}.{}({!r}, {!r})".format(
+            self.__class__.__module__,
+            self.__class__.__name__,
+            self.__width,
+            self.__height
+        )
