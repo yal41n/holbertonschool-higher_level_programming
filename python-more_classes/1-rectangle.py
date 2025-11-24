@@ -18,6 +18,8 @@ class Rectangle:
             width (int): The width of the rectangle. Defaults to 0.
             height (int): The height of the rectangle. Defaults to 0.
         """
+        # When setting initial values, we must use the setters 
+        # to ensure validation runs.
         self.width = width
         self.height = height
 
