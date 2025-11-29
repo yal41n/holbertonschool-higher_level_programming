@@ -3,7 +3,7 @@
 Pickling Custom Classes Module
 
 Provides a CustomObject class that can be serialized and deserialized
-using the pickle module.
+using the pickle module. Handles errors for missing or corrupted files.
 """
 import pickle
 
@@ -32,7 +32,7 @@ class CustomObject:
         """
         print(f"Name: {self.name}")
         print(f"Age: {self.age}")
-        print(f"Is Student: {self.is_student}")
+        print(f'Is Student: {self.is_student}')
 
     def serialize(self, filename):
         """
@@ -65,5 +65,5 @@ class CustomObject:
             with open(filename, "rb") as f:
                 obj = pickle.load(f)
             return obj
-        except (OSError, pickle.PickleError):
+        except (OSError, pickle.PickleError, EOFError):
             return None
