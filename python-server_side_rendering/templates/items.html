@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Items List</title>
+</head>
+<body>
+    {% include 'header.html' %}
+    
+    <main>
+        <h1>Available Items</h1>
+        
+        {% if items %}
+            <ul>
+                {% for item in items %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No items found</p>
+        {% endif %}
+        
+        <p>Go back to <a href="/">Home</a>.</p>
+    </main>
+    
+    {% include 'footer.html' %}
+</body>
+</html>
