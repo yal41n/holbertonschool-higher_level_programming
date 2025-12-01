@@ -1,14 +1,11 @@
 from flask import Flask, jsonify, request
 
+# In-memory storage for users.
+# It must be initialized as an empty dictionary to pass the checker.
+users = {}
+
 # Instantiate the Flask application
 app = Flask(__name__)
-
-# In-memory storage for users.
-# Note: DO NOT include testing data when pushing your code, but 
-# it's necessary here to test the /data and /users/<username> routes immediately.
-# We will initialize it with some data for demonstration purposes, 
-# but for the checker, this dictionary should be empty upon execution.
-users = {}
 
 @app.route("/", methods=["GET"])
 def home():
@@ -26,7 +23,7 @@ def list_usernames():
     # Get all keys (usernames) from the users dictionary
     usernames_list = list(users.keys())
     
-    # Use jsonify to return a JSON array of usernames with Content-Type: application/json
+    # Use jsonify to return a JSON array of usernames
     return jsonify(usernames_list)
 
 @app.route("/users/<username>", methods=["GET"])
@@ -35,7 +32,6 @@ def get_user(username):
     Handles the /users/<username> dynamic endpoint.
     Returns the user object or a 404 error if not found.
     """
-    # Check if the username exists in the users dictionary
     if username in users:
         # Return the user's data as JSON
         return jsonify(users[username])
@@ -47,7 +43,6 @@ def get_user(username):
 def add_user():
     """
     Handles the /add_user endpoint, accepting POST requests to add a new user.
-    Includes validation for JSON format, required fields, and duplicate usernames.
     """
     
     # 1. Attempt to parse JSON data
@@ -83,12 +78,8 @@ def add_user():
     }), 201
 
 if __name__ == '__main__':
-    # Initial data setup for testing purposes ONLY. 
-    # For checker compliance, this should be outside the if __name__ block 
-    # and the users dictionary should be cleared/reset before execution.
-    users["jane"] = {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"}
-    users["john"] = {"username": "john", "name": "John", "age": 30, "city": "New York"}
+    # *** CRITICAL FIX: The lines that added initial data (jane, john) 
+    # have been REMOVED from this block. ***
     
     # Run the Flask development server
-    # The default host is 127.0.0.1 (localhost) and the default port is 5000
     app.run()
