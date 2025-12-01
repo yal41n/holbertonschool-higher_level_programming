@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-# 1. Create a Basic Flask Application
+# Create a Basic Flask Application
 app = Flask(__name__)
 
 # --- Routes ---
@@ -21,5 +21,5 @@ def contact():
     return render_template('contact.html')
 
 if __name__ == '__main__':
-    # 2. Run the Flask development server on port 5000 with debug mode
+    # Run the Flask development server on port 5000 with debug mode
     app.run(debug=True, port=5000)
